@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Recruitment & HR Support - Muster Consultants Pvt Ltd</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="scr.js" defer></script>
+    <style>
+        .enhanced-service-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.25rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .enhanced-service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease-in-out;
+        }
+        .enhanced-service-card:hover::before {
+            transform: scaleX(1);
+        }
+        .enhanced-service-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #f0fdf4, #e0ffe0);
+        }
+        .enhanced-service-card .icon-wrapper {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .enhanced-service-card:hover .icon-wrapper {
+            background-color: var(--primary-dark);
+            transform: rotateY(180deg);
+        }
+        .enhanced-service-card h3 {
+            color: var(--text-dark);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .enhanced-service-card p {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+        .enhanced-service-card:nth-child(1) { animation-delay: 0.1s; }
+        .enhanced-service-card:nth-child(2) { animation-delay: 0.2s; }
+        .enhanced-service-card:nth-child(3) { animation-delay: 0.3s; }
+        .enhanced-service-card:nth-child(4) { animation-delay: 0.4s; }
+        .enhanced-service-card:nth-child(5) { animation-delay: 0.5s; }
+        .enhanced-service-card:nth-child(6) { animation-delay: 0.6s; }
+        .hero-banner .hero-banner-overlay {
+            background-color: rgba(0, 0, 0, 0.65);
+            background-image: linear-gradient(to top, rgba(74, 85, 162, 0.7), rgba(129, 140, 248, 0.4));
+        }
+        .hero-banner h1 {
+            font-size: 3.8rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.6);
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+        .hero-banner p {
+            font-size: 1.8rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            animation: fadeIn 1.2s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+        .navbar-animated {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+<div id="globalMessageBox" class="global-message-box" style="display:none;position:fixed;top:0;left:0;width:100%;z-index:9999;text-align:center;padding:1em;font-weight:bold;"></div>
+    <!-- Navbar (copied from home.html for consistency) -->
+    <nav class="bg-white shadow-lg py-3 sm:py-4 navbar-animated">
+        <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-12">
+            <div class="flex items-center">
+                <img src="logo.jpg" alt="Muster Consultants Logo" class="h-12 sm:h-14 lg:h-16 mr-3 sm:mr-4 rounded-md">
+                <a href="index.html" class="text-primary-color font-bold text-lg sm:text-xl tracking-wide leading-tight">Muster Consultants<br> Pvt Ltd</a>
+            </div>
+            <div class="hidden md:flex flex-row space-x-4 lg:space-x-6">
+                <a href="index.html" class="text-primary-color font-medium nav-link text-sm lg:text-base focus:outline-none focus-visible:outline-none">HOME</a>
+                <div class="relative group">
+                    <a href="#" class="text-gray-700 hover:text-primary-color font-medium nav-link inline-flex items-center text-sm lg:text-base">ABOUT US</a>
+                    <div class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-opacity duration-200 z-50 border border-gray-100">
+                        <a href="about.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">About Us</a>
+                        <a href="gallery.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">Gallery</a>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <a href="#" class="text-gray-700 hover:text-primary-color font-medium nav-link inline-flex items-center text-sm lg:text-base">SERVICES</a>
+                    <div class="absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-opacity duration-200 z-50 border border-gray-100">
+                        <a href="leadership_hiring.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">Leadership Hiring</a>
+                        <a href="rpo.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">Recruitment Process Outsourcing (RPO)</a>
+                        <a href="permanent_staffing.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">Permanent Staffing</a>
+                        <a href="contract_staffing.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">Contract Staffing</a>
+                        <a href="specialist_services.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">Specialist Services</a>
+                        <a href="hr_support.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">Other Recruitment & HR Support</a>
+                        <a href="training_development.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">Training & Development</a>
+                    </div>
+                </div>
+                <a href="seeker.html" class="text-gray-700 hover:text-primary-color font-medium nav-link text-sm lg:text-base">CURRENT OPENINGS</a>
+                <a href="industries_served.html" class="text-gray-700 hover:text-primary-color font-medium nav-link text-sm lg:text-base">INDUSTRIES SERVED</a>
+                <a href="contact.html" class="text-gray-700 hover:text-primary-color font-medium nav-link text-sm lg:text-base">CONTACT US</a>
+            </div>
+            <button id="mobile-menu-toggle" class="md:hidden flex items-center px-2 sm:px-3 py-2 border rounded-lg text-primary-color border-primary-color focus:outline-none hover:bg-primary-color hover:text-white transition-colors duration-200" aria-label="Open menu">
+                <svg class="h-6 w-6 sm:h-7 sm:w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden"></div>
+        <div id="mobile-menu" class="fixed top-0 left-0 w-80 max-w-full h-full bg-white shadow-2xl z-50 transform -translate-x-full transition-transform duration-300 md:hidden">
+            <div class="flex items-center px-6 py-4 border-b">
+                <img src="logo.jpg" alt="Muster Consultants Logo" class="h-12 w-12 rounded-md mr-3">
+                <span class="font-bold text-lg text-primary-color leading-tight">Muster Consultants<br>Pvt Ltd</span>
+                <button id="mobile-menu-close" class="ml-auto text-gray-700 hover:text-primary-color focus:outline-none" aria-label="Close menu">
+                    <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <nav class="flex flex-col px-6 py-4 space-y-2">
+                <a href="index.html" class="py-2 text-primary-color font-medium nav-link focus:outline-none focus-visible:outline-none">HOME</a>
+                <div class="relative">
+                    <button id="mobile-aboutus-toggle" class="w-full flex justify-between items-center py-2 text-gray-700 hover:text-primary-color font-medium nav-link focus:outline-none">
+                        ABOUT US
+                        <svg id="mobile-aboutus-caret" class="h-5 w-5 ml-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="mobile-aboutus-dropdown" class="hidden flex-col pl-4 space-y-1 mt-1">
+                        <a href="about.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">About Us</a>
+                        <a href="gallery.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">Gallery</a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <button id="mobile-services-toggle" class="w-full flex justify-between items-center py-2 text-gray-700 hover:text-primary-color font-medium nav-link focus:outline-none">
+                        SERVICES
+                        <svg id="mobile-services-caret" class="h-5 w-5 ml-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="mobile-services-dropdown" class="hidden flex-col pl-4 space-y-1 mt-1">
+                        <a href="leadership_hiring.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">Leadership Hiring</a>
+                        <a href="rpo.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">Recruitment Process Outsourcing (RPO)</a>
+                        <a href="permanent_staffing.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">Permanent Staffing</a>
+                        <a href="contract_staffing.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">Contract Staffing</a>
+                        <a href="specialist_services.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">Specialist Services</a>
+                        <a href="hr_support.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">Other Recruitment & HR Support</a>
+                        <a href="training_development.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">Training & Development</a>
+                    </div>
+                </div>
+                <a href="seeker.html" class="py-2 text-gray-700 hover:text-primary-color font-medium nav-link focus:outline-none focus-visible:outline-none">CURRENT OPENINGS</a>
+                <a href="industries_served.html" class="py-2 text-gray-700 hover:text-primary-color font-medium nav-link focus:outline-none focus-visible:outline-none">INDUSTRIES SERVED</a>
+                <a href="contact.html" class="py-2 text-gray-700 hover:text-primary-color font-medium nav-link focus:outline-none focus-visible:outline-none">CONTACT US</a>
+            </nav>
+        </div>
+    </nav>
+    <!-- Hero Banner -->
+    <section class="hero-banner hero-home relative" style="background: url('Other Recruitment & HR Support.jpg') center center/cover no-repeat;">
+        <div class="hero-banner-overlay"></div>
+        <div class="container mx-auto relative z-10 px-6 md:px-12 py-24">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Other Recruitment & HR Support</h1>
+            <p class="text-lg md:text-2xl text-white mb-6">Comprehensive HR support and recruitment services.</p>
+        </div>
+    </section>
+    <main class="container mx-auto px-6 md:px-12 py-16">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <h2 class="text-2xl font-bold mb-4">Comprehensive HR Support & Recruitment Solutions</h2>
+            <p class="mb-4">At Muster Consultants, we know that effective HR management is essential for business success. Our HR Support and Recruitment services are designed to streamline your HR operations, improve workforce efficiency, and ensure a seamless candidate experience. Whether you need help with process management, candidate logistics, or organizational insights, our team delivers tailored solutions that save you time and drive results.</p>
+            <ul class="list-disc pl-6 text-gray-700 mb-4">
+                <li><strong>Organizational Insights:</strong> Gain valuable analysis of workforce behavior, team dynamics, and HR best practices to inform your people strategy.</li>
+                <li><strong>Process Management:</strong> We structure and manage recruitment workflows, scheduling, and documentation for maximum efficiency.</li>
+                <li><strong>Candidate Logistics:</strong> From interview coordination to onboarding, we handle all logistics to ensure a smooth experience for both clients and candidates.</li>
+                <li><strong>Time-Saving Solutions:</strong> Free up your internal resources by outsourcing HR tasks to our experienced professionals.</li>
+                <li><strong>Flexible Support:</strong> Our services adapt to your business needs, whether you require ongoing HR partnership or project-based assistance.</li>
+            </ul>
+            <p class="mb-4">Our comprehensive HR support has empowered organizations to focus on growth, reduce administrative burdens, and create a positive workplace culture.</p>
+            <div class="mt-6 text-center">
+                <a href="contact.html" class="inline-block px-8 py-3 bg-gradient-to-r from-blue-600 to-green-500 text-white font-semibold rounded-full shadow-lg hover:from-green-500 hover:to-blue-600 transition-all duration-300">
+                    Get Expert HR Support
+                </a>
+            </div>
+        </div>
+    </main>
+    <!-- Footer (Enhanced) -->
+    <footer class="footer-bg text-white py-8 sm:py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            <!-- Company Info -->
+            <div class="col-span-1 animated-grid-item" style="animation-delay: 0.1s;">
+                <!-- Muster Logo -->
+                <img src="logo.jpg" alt="Muster Consultants Footer Logo" class="h-16 mb-4 rounded-md footer-logo">
+                <p class="text-gray-400 mb-4">
+                    We have over 10 years of experience in connecting talent with opportunity.
+                </p>
+                <p class="text-gray-400 mb-4">
+                    At Muster Consultants Pvt Ltd, we are committed to Performance, Quality, and Results.
+                </p>
+                <a href="https://www.google.com/maps/place/Muster+Consultants+Pvt.+Ltd/@28.7089456,77.1183545,16.08z/data=!4m6!3m5!1s0x390d077a0c24db2b:0x7ac67beb3c37b9c4!8m2!3d28.7095423!4d77.1231909!16s%2Fg%2F11nwxf0tfd?authuser=0&entry=ttu&g_ep=EgoyMDI1MDcwOS4wIKXMDSoASAFQAw%3D%3D" class="text-primary-color hover:text-accent-color text-sm flex items-center footer-link">
+                    <i class="fas fa-map-marker-alt mr-2"></i> Find Us on Google Maps
+                </a>
+            </div>
+            <!-- Follow Us -->
+            <div class="col-span-1 animated-grid-item" style="animation-delay: 0.2s;">
+                <h4 class="text-xl font-semibold mb-4">FOLLOW US</h4>
+                <ul class="space-y-3">
+                    <li><a href="https://www.facebook.com/share/1CYqAmXa6U/" class="footer-link flex items-center"><i class="fab fa-facebook-f mr-3 footer-social-icon"></i> Facebook</a></li>
+                    <li><a href="https://www.linkedin.com/company/muster-consultants-pvt-ltd/posts/?feedView=all" class="footer-link flex items-center"><i class="fab fa-linkedin-in mr-3 footer-social-icon"></i> LinkedIn</a></li>
+                    <li><a href="https://x.com/MusterHr5" class="footer-link flex items-center"><i class="fab fa-twitter mr-3 footer-social-icon"></i> Twitter</a></li>
+                    <li><a href="https://www.instagram.com/muster_consultants_official/" class="footer-link flex items-center"><i class="fab fa-instagram mr-3 footer-social-icon"></i>instagram</a></li>
+                </ul>
+            </div>
+            <!-- Our Services -->
+            <div class="col-span-1 animated-grid-item" style="animation-delay: 0.3s;">
+                <h4 class="text-xl font-semibold mb-4">OUR SERVICES</h4>
+                <ul class="space-y-3">
+                    <li><a href="leadership_hiring.html" class="footer-link flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Leadership Hiring</a></li>
+                    <li><a href="rpo.html" class="footer-link flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Recruitment Process Outsourcing</a></li>
+                    <li><a href="permanent_staffing.html" class="footer-link flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Permanent Staffing</a></li>
+                    <li><a href="contract_staffing.html" class="footer-link flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Contract Staffing</a></li>
+                    <li><a href="specialist_services.html" class="footer-link flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Specialist Services</a></li>
+                    <li><a href="hr_support.html" class="footer-link flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Other Recruitment & HR Support</a></li>
+                    <li><a href="training_development.html" class="footer-link flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Training & Development</a></li>
+                </ul>
+            </div>
+            <!-- Subscribe Us -->
+            <div class="col-span-1 animated-grid-item" style="animation-delay: 0.4s;">
+                <h4 class="text-xl font-semibold mb-4">SUBSCRIBE US</h4>
+                <p class="text-gray-400 mb-4">
+                    Sign up for our mailing list to get the latest updates and news directly to your inbox.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-2">
+                    <input type="email" placeholder="Enter your email" class="flex-grow p-3 rounded-md sm:rounded-l-md sm:rounded-r-none footer-subscribe-input" required>
+                    <button class="p-3 text-white rounded-md sm:rounded-l-none sm:rounded-r-md footer-subscribe-button">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="hidden text-green-400 font-semibold mt-2" id="subscribe-success">You have successfully subscribed to our newsletter!</div>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-6 sm:mt-8 pt-4 sm:pt-6 text-center text-gray-500 text-xs sm:text-sm px-4">
+                            &copy; Copyright Muster Consultants Pvt Ltd. All rights reserved. | Design by - Manvendra Mishra and Sachin kumar
+        </div>
+    </footer>
+    <script>
+// Dropdown menu fix: keep open on hover, close only when mouse leaves dropdown
+  document.querySelectorAll('.group').forEach(function(group) {
+    var dropdown = group.querySelector('div.absolute');
+    var trigger = group.querySelector('a.inline-flex');
+    if (!dropdown || !trigger) return;
+    let closeTimeout;
+    function openMenu() {
+      dropdown.classList.add('group-hover:opacity-100', 'group-hover:visible');
+      dropdown.classList.remove('opacity-0', 'invisible');
+      clearTimeout(closeTimeout);
+    }
+    function closeMenu() {
+      closeTimeout = setTimeout(function() {
+        dropdown.classList.remove('group-hover:opacity-100', 'group-hover:visible');
+        dropdown.classList.add('opacity-0', 'invisible');
+      }, 150);
+    }
+    group.addEventListener('mouseenter', openMenu);
+    group.addEventListener('mouseleave', closeMenu);
+    dropdown.addEventListener('mouseenter', openMenu);
+    dropdown.addEventListener('mouseleave', closeMenu);
+    trigger.addEventListener('focus', openMenu);
+    trigger.addEventListener('blur', closeMenu);
+  });
+// Mobile menu toggle
+const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+const mobileMenuClose = document.getElementById('mobile-menu-close');
+const mobileServicesToggle = document.getElementById('mobile-services-toggle');
+const mobileServicesDropdown = document.getElementById('mobile-services-dropdown');
+const mobileServicesCaret = document.getElementById('mobile-services-caret');
+const mobileAboutUsToggle = document.getElementById('mobile-aboutus-toggle');
+const mobileAboutUsDropdown = document.getElementById('mobile-aboutus-dropdown');
+const mobileAboutUsCaret = document.getElementById('mobile-aboutus-caret');
+
+function openMobileMenu() {
+  mobileMenu.classList.remove('-translate-x-full');
+  mobileMenuOverlay.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobileMenu() {
+  mobileMenu.classList.add('-translate-x-full');
+  mobileMenuOverlay.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+mobileMenuToggle.addEventListener('click', openMobileMenu);
+mobileMenuClose.addEventListener('click', closeMobileMenu);
+mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+// SERVICES dropdown in mobile menu
+mobileServicesToggle.addEventListener('click', function() {
+  const isOpen = !mobileServicesDropdown.classList.contains('hidden');
+  if (isOpen) {
+    mobileServicesDropdown.classList.add('hidden');
+    mobileServicesCaret.classList.remove('rotate-180');
+  } else {
+    mobileServicesDropdown.classList.remove('hidden');
+    mobileServicesCaret.classList.add('rotate-180');
+  }
+});
+// ABOUT US dropdown in mobile menu
+mobileAboutUsToggle.addEventListener('click', function() {
+  const isOpen = !mobileAboutUsDropdown.classList.contains('hidden');
+  if (isOpen) {
+    mobileAboutUsDropdown.classList.add('hidden');
+    mobileAboutUsCaret.classList.remove('rotate-180');
+  } else {
+    mobileAboutUsDropdown.classList.remove('hidden');
+    mobileAboutUsCaret.classList.add('rotate-180');
+  }
+});
+const subscribeInput = document.querySelector('.footer-subscribe-input');
+const subscribeBtn = document.querySelector('.footer-subscribe-button');
+const subscribeSuccess = document.getElementById('subscribe-success');
+if (subscribeInput && subscribeBtn) {
+    subscribeBtn.addEventListener('click', async function(e) {
+        e.preventDefault();
+        const email = subscribeInput.value.trim();
+        if (!email) {
+            return;
+        }
+        subscribeBtn.disabled = true;
+        try {
+            const res = await fetch('http://localhost:5000/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            if (res.ok) {
+                subscribeInput.value = '';
+                subscribeSuccess.classList.remove('hidden');
+            }
+        } catch (err) {
+        }
+        subscribeBtn.disabled = false;
+    });
+}
+</script>
+</body>
+</html> 

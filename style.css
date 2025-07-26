@@ -1,0 +1,1083 @@
+/* Custom CSS Variables for consistent theming */
+:root {
+    --primary-color: #16A34A; /* Green-600 */
+    --primary-dark: #15803d; /* Darker Green for hover */
+    --accent-color: #3B82F6; /* Blue for accents/borders */
+    --secondary-color: #3B82F6; /* Blue for social icons, etc. */
+    --text-dark: #1a202c; /* Dark text for headings */
+    --text-light: #4a5568; /* Lighter text for paragraphs */
+    --footer-bg-color: #2c3e50; /* Dark blue-gray for footer */
+}
+
+/* CV Upload Floating Icon Styles */
+.cv-upload-icon {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 70px;
+    height: 70px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(22, 163, 74, 0.3);
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
+    animation: bounce-slow 2s infinite;
+}
+
+.cv-upload-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 35px rgba(22, 163, 74, 0.4);
+    background: var(--primary-dark);
+}
+
+.cv-upload-icon i {
+    color: white;
+    font-size: 28px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.cv-upload-icon:hover i {
+    transform: scale(1.1);
+}
+
+/* Global Message Box Styles */
+.global-message-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    text-align: center;
+    padding: 1rem;
+    font-weight: 600;
+    color: white;
+    background-color: #28A745;
+    transform: translateY(-100%);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.global-message-box.show {
+    transform: translateY(0);
+}
+
+.global-message-box.error {
+    background-color: #DC3545;
+}
+
+/* Responsive adjustments for CV upload icon */
+@media (max-width: 768px) {
+    .cv-upload-icon {
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .cv-upload-icon i {
+        font-size: 24px;
+    }
+}
+
+/* Base Body Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-light);
+    overflow-x: hidden; /* Prevent horizontal scroll on animations */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* General Section Headings */
+.section-heading {
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+/* Hero Banner General Styles */
+.hero-banner {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: white;
+    padding: 6rem 0; /* Default padding, overridden in specific pages */
+    text-align: center;
+    overflow: hidden;
+    background-attachment: scroll; /* Default, can be fixed for parallax */
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* This will be overridden by specific page hero overlays for vibrant colors */
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hero-banner .container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+/* Call to Action Buttons (General) */
+.cta-button {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px; /* Fully rounded */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: 2px solid transparent;
+}
+
+.cta-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Navbar Styles */
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease-in-out;
+    padding: 0.5rem 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Card Base Styles (for common card appearance) */
+.card-base {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    height: 100%;
+}
+
+.card-base:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Footer Styles */
+.footer-bg {
+    background-color: var(--footer-bg-color);
+}
+
+.footer-link {
+    color: #a0aec0;
+    transition: color 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: #ffffff;
+}
+
+.footer-logo {
+    filter: brightness(1.2); /* Slightly brighter logo for dark footer */
+}
+
+.footer-social-icon {
+    font-size: 1.5rem;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.footer-social-icon:hover {
+    color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.footer-subscribe-input {
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem 0 0 0.5rem;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.footer-subscribe-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-subscribe-input:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.footer-subscribe-button {
+    background-color: var(--primary-color);
+    border-radius: 0 0.5rem 0.5rem 0;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.footer-subscribe-button:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseButton {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Animation Classes */
+.navbar-animated {
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.animated-section-heading {
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0;
+}
+
+.animated-paragraph {
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+}
+
+.animated-grid-item {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.animate-bounce-slow {
+    animation: bounce-slow 2s infinite ease-in-out;
+}
+
+/* Specific style for the stats/call-to-action section background */
+.stats-section {
+    background-color: var(--primary-color); /* Ensure it uses the primary color */
+}
+
+/* Enhanced Logo Slider Section Styles */
+.logo-slider-section {
+    background: blueviolet;
+    padding: 3rem 0;
+}
+.logo-slider-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+.logo-slider {
+    display: flex;
+    align-items: center;
+    animation: logo-scroll 40s linear infinite;
+    width: max-content;
+}
+.logo-slider-item {
+    flex: 0 0 auto;
+    margin: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 1.5rem;
+    background: white;
+    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.08);
+    padding: 1.5rem 2.5rem;
+    min-width: 180px;
+    min-height: 100px;
+}
+.logo-slider-item:hover {
+    transform: scale(1.08) translateY(-8px);
+    box-shadow: 0 8px 32px 0 rgba(16, 185, 129, 0.18);
+    background: linear-gradient(90deg, #f0fdf4 0%, #e0f2fe 100%);
+}
+.logo-slider-item img {
+    max-width: 140px;
+    max-height: 70px;
+    object-fit: contain;
+    filter: grayscale(0%);
+    transition: filter 0.3s, transform 0.3s;
+}
+.logo-slider-item:hover img {
+    filter: grayscale(0%) drop-shadow(0 2px 8px #16a34a22);
+    transform: scale(1.05);
+}
+@keyframes logo-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Mobile Menu Styles */
+#mobile-menu {
+    left: 0;
+    right: auto;
+    transform: -translateX(100%);
+}
+
+#mobile-menu.open {
+    transform: translateX(0);
+}
+
+#mobile-menu .logo {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 0.5rem;
+    margin-right: 0.75rem;
+}
+
+#mobile-menu .company-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    line-height: 1.1;
+}
+
+/* Mobile menu left alignment */
+#mobile-menu {
+    text-align: left;
+}
+
+#mobile-menu nav {
+    text-align: left;
+}
+
+#mobile-menu nav a,
+#mobile-menu nav button {
+    text-align: left;
+    justify-content: flex-start;
+}
+
+#mobile-menu .flex {
+    justify-content: flex-start;
+}
+
+#mobile-menu .flex.items-center {
+    justify-content: flex-start;
+}
+
+#mobile-menu .flex.items-center.px-6.py-4 {
+    justify-content: flex-start;
+}
+
+#mobile-menu .flex.flex-col.px-6.py-4 {
+    align-items: flex-start;
+}
+
+#mobile-menu .flex.flex-col.px-6.py-4.space-y-2 {
+    align-items: flex-start;
+}
+
+#mobile-menu .w-full.flex.justify-between {
+    justify-content: flex-start;
+}
+
+#mobile-menu .w-full.flex.justify-between.items-center {
+    justify-content: flex-start;
+}
+
+#mobile-menu .hidden.flex-col.pl-4.space-y-1.mt-1 {
+    align-items: flex-start;
+}
+
+#mobile-menu .block.py-2 {
+    text-align: left;
+}
+
+#mobile-menu .py-2 {
+    text-align: left;
+}
+
+#mobile-menu .relative {
+    text-align: left;
+}
+
+#mobile-menu .relative button {
+    text-align: left;
+    justify-content: flex-start;
+}
+
+#mobile-menu .relative div {
+    text-align: left;
+}
+
+#mobile-menu .relative div a {
+    text-align: left;
+    justify-content: flex-start;
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 1200px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .hero-banner h1 {
+        font-size: 3.5rem;
+    }
+    
+    .hero-banner p {
+        font-size: 1.5rem;
+    }
+    
+    .why-choose-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .hero-banner {
+        padding: 4rem 0;
+        min-height: 50vh;
+    }
+    
+    .hero-banner h1 {
+        font-size: 3rem;
+        line-height: 1.2;
+    }
+    
+    .hero-banner p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+    }
+    
+    .cta-button {
+        font-size: 1.1rem;
+        padding: 0.875rem 2rem;
+    }
+    
+    .section-heading {
+        font-size: 2.5rem;
+    }
+    
+    .logo-slider-item {
+        margin: 0 2rem;
+        padding: 1.25rem 2rem;
+        min-width: 160px;
+        min-height: 80px;
+    }
+    
+    .logo-slider-item img {
+        max-width: 120px;
+        max-height: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile-specific hero adjustments */
+    .hero-banner {
+        padding: 3rem 0;
+        min-height: 40vh;
+        text-align: center;
+    }
+    
+    .hero-banner h1 {
+        font-size: 2.5rem;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    }
+    
+    .hero-banner p {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+    }
+    
+    .cta-button {
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+        width: auto;
+        min-width: 200px;
+    }
+    
+    /* Mobile navigation improvements */
+    nav {
+        padding: 0.75rem 0;
+    }
+    
+    nav .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    nav img {
+        height: 3rem;
+        width: auto;
+    }
+    
+    nav a {
+        font-size: 0.9rem;
+    }
+    
+    /* Mobile menu button improvements */
+    #mobile-menu-toggle {
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+    }
+    
+    #mobile-menu-toggle:hover {
+        background: rgba(22, 163, 74, 0.1);
+        transform: scale(1.05);
+    }
+    
+    /* Section adjustments for mobile */
+    .section-heading {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .animated-paragraph {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    /* Grid adjustments for mobile */
+    .grid {
+        gap: 1.5rem;
+    }
+    
+    .why-choose-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .why-choose-item {
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .why-choose-item h3 {
+        font-size: 1.5rem;
+    }
+    
+    .why-choose-item p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    /* Stats section mobile optimization */
+    .stats-section {
+        padding: 2rem 1rem;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .stats-section .stats-item {
+        text-align: center;
+    }
+    
+    .stats-section .stats-item p:first-child {
+        font-size: 3rem;
+        font-weight: bold;
+    }
+    
+    .stats-section .stats-item p:last-child {
+        font-size: 1rem;
+        margin-top: 0.5rem;
+    }
+    
+    /* Logo slider mobile optimization */
+    .logo-slider-section {
+        padding: 2rem 0;
+    }
+    
+    .logo-slider-item {
+        margin: 0 1rem;
+        padding: 1rem 1.2rem;
+        min-width: 120px;
+        min-height: 60px;
+        border-radius: 1rem;
+    }
+    
+    .logo-slider-item img {
+        max-width: 90px;
+        max-height: 40px;
+    }
+    
+    /* Footer mobile optimization */
+    footer {
+        padding: 2rem 0;
+    }
+    
+    footer .grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem;
+        text-align: left;
+    }
+    
+    footer .col-span-1 {
+        margin-bottom: 2rem;
+    }
+    
+    footer .col-span-1:last-child {
+        margin-bottom: 0;
+    }
+    
+    .footer-subscribe-input,
+    .footer-subscribe-button {
+        width: 100%;
+        border-radius: 0.5rem;
+        margin-bottom: 0.5rem;
+        text-align: left;
+    }
+    
+    .footer-subscribe-input::placeholder {
+        text-align: left;
+    }
+    
+    .footer-subscribe-input {
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Ensure footer sections stack properly on mobile */
+    footer h4 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+    
+    footer ul {
+        margin-bottom: 1.5rem;
+    }
+    
+    footer ul li {
+        margin-bottom: 0.75rem;
+    }
+    
+    footer p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        text-align: left;
+    }
+    
+    /* Ensure all footer content is left-aligned */
+    footer ul {
+        text-align: left;
+    }
+    
+    footer ul li {
+        text-align: left;
+    }
+    
+    footer h4 {
+        text-align: left;
+    }
+    
+    footer .flex {
+        justify-content: flex-start;
+    }
+    
+    footer .flex-col {
+        align-items: flex-start;
+    }
+    
+    footer .flex-row {
+        justify-content: flex-start;
+    }
+    
+    /* What we do section mobile optimization */
+    .what-we-do-icon {
+        font-size: 4rem !important;
+    }
+    
+    /* Card improvements for mobile */
+    .card-base {
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Touch-friendly improvements */
+    .nav-link,
+    .footer-link,
+    .cta-button {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Improved spacing for mobile */
+    .py-20 {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    
+    .py-16 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    
+    .mb-12 {
+        margin-bottom: 2rem;
+    }
+    
+    .mb-14 {
+        margin-bottom: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra small mobile devices */
+    .hero-banner {
+        padding: 2rem 0;
+        min-height: 35vh;
+    }
+    
+    .hero-banner h1 {
+        font-size: 2rem;
+        line-height: 1.4;
+    }
+    
+    .hero-banner p {
+        font-size: 1rem;
+    }
+    
+    .cta-button {
+        font-size: 0.9rem;
+        
+    /* Footer extra small mobile optimization */
+    footer {
+        padding: 1.5rem 0;
+    }
+    
+    footer .grid {
+        gap: 1.5rem;
+    }
+    
+    footer .col-span-1 {
+        margin-bottom: 1.5rem;
+    }
+    
+    footer h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    footer ul li {
+        margin-bottom: 0.5rem;
+    }
+    
+    footer p {
+        font-size: 0.9rem;
+        text-align: left;
+    }
+    
+    /* Extra small mobile - ensure all footer elements are left-aligned */
+    footer ul,
+    footer ul li,
+    footer h4,
+    footer .text-gray-400 {
+        text-align: left;
+    }
+    
+    .footer-subscribe-input,
+    .footer-subscribe-button {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Footer logo and company info mobile optimization */
+    .footer-logo {
+        height: 3rem !important;
+        width: auto;
+        margin: 0 0 1rem 0;
+        display: block;
+    }
+    
+    footer .text-gray-400 {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+    
+    footer .footer-link {
+        font-size: 0.9rem;
+        justify-content: flex-start;
+    }
+        padding: 0.625rem 1.25rem;
+        min-width: 180px;
+    }
+    
+    .section-heading {
+        font-size: 1.75rem;
+    }
+    
+    .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    nav .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    nav img {
+        height: 2.5rem;
+    }
+    
+    nav a {
+        font-size: 0.8rem;
+    }
+    
+    .why-choose-item {
+        padding: 1.25rem;
+    }
+    
+    .why-choose-item h3 {
+        font-size: 1.25rem;
+    }
+    
+    .stats-section .stats-item p:first-child {
+        font-size: 2.5rem;
+    }
+    
+    .stats-section .stats-item p:last-child {
+        font-size: 0.9rem;
+    }
+    
+    .logo-slider-item {
+        margin: 0 0.75rem;
+        padding: 0.75rem 1rem;
+        min-width: 100px;
+        min-height: 50px;
+    }
+    
+    .logo-slider-item img {
+        max-width: 70px;
+        max-height: 35px;
+    }
+    
+    .what-we-do-icon {
+        font-size: 3rem !important;
+    }
+    
+    .card-base {
+        padding: 1.25rem;
+    }
+    
+    /* Improved touch targets */
+    .nav-link,
+    .footer-link,
+    .cta-button {
+        min-height: 48px;
+    }
+    
+    /* Better spacing for very small screens */
+    .py-20 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    
+    .py-16 {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+    
+    .mb-12 {
+        margin-bottom: 1.5rem;
+    }
+    
+    .mb-14 {
+        margin-bottom: 2rem;
+    }
+}
+
+/* Tablet-specific optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-banner {
+        padding: 4.5rem 0;
+        min-height: 55vh;
+    }
+    
+    .hero-banner h1 {
+        font-size: 3.25rem;
+    }
+    
+    .hero-banner p {
+        font-size: 1.35rem;
+    }
+    
+    .why-choose-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+    
+    .logo-slider-item {
+        margin: 0 2.5rem;
+        padding: 1.5rem 2.25rem;
+        min-width: 170px;
+        min-height: 90px;
+    }
+    
+    .logo-slider-item img {
+        max-width: 130px;
+        max-height: 65px;
+    }
+}
+
+/* Large desktop optimizations */
+@media (min-width: 1201px) {
+    .hero-banner {
+        padding: 7rem 0;
+        min-height: 70vh;
+    }
+    
+    .hero-banner h1 {
+        font-size: 4rem;
+    }
+    
+    .hero-banner p {
+        font-size: 1.75rem;
+    }
+    
+    .cta-button {
+        font-size: 1.25rem;
+        padding: 1rem 2.5rem;
+    }
+    
+    .section-heading {
+        font-size: 3rem;
+    }
+    
+    .why-choose-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+    }
+    
+    .logo-slider-item {
+        margin: 0 4rem;
+        padding: 2rem 3rem;
+        min-width: 200px;
+        min-height: 120px;
+    }
+    
+    .logo-slider-item img {
+        max-width: 160px;
+        max-height: 80px;
+    }
+}
+
+/* Ensure dropdown menu always appears above overlays */
+.group > .absolute,
+.z-\[999\] {
+    z-index: 1050 !important;
+}
+
+/* Force hero banner overlay to always be below nav and dropdown */
+.hero-banner-overlay {
+    z-index: 1 !important;
+}
+
+nav {
+    position: relative;
+    z-index: 100;
+}
+
+#mobile-menu,
+#mobile-menu-overlay {
+    z-index: 200 !important;
+}
+
+/* Smooth scrolling for better UX */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+/* .cta-button:focus,
+.nav-link:focus,
+.footer-link:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+} */
+
+/* Loading states */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Print styles */
+@media print {
+    .hero-banner {
+        background: none !important;
+        color: black !important;
+    }
+    
+    .hero-banner-overlay {
+        display: none !important;
+    }
+    
+    nav,
+    footer {
+        display: none !important;
+    }
+}

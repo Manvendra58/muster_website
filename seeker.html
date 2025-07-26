@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muster Consultants Pvt Ltd - Job Seeker</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <script src="scr.js" defer></script>
+    <style>
+        /* Specific styles for the CV Upload Form */
+        .cv-upload-form-container {
+            background-color: #ffffff;
+            border-radius: 1.5rem; /* More rounded */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+            padding: 3rem; /* More padding */
+            animation: scaleIn 0.8s ease-out forwards;
+            opacity: 0;
+            max-width: 700px; /* Max width for the form */
+            margin: 0 auto; /* Center the form */
+        }
+
+        .cv-upload-form-container .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .cv-upload-form-container label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+
+        .cv-upload-form-container input[type="text"],
+        .cv-upload-form-container input[type="email"],
+        .cv-upload-form-container select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.75rem; /* More rounded inputs */
+            background-color: #f8fafc;
+            transition: all 0.3s ease-in-out;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .cv-upload-form-container input[type="text"]:focus,
+        .cv-upload-form-container input[type="email"]:focus,
+        .cv-upload-form-container select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.2); /* Green shadow on focus */
+            background-color: #fff;
+        }
+
+        .cv-upload-form-container input[type="file"] {
+            border: 2px dashed #a0aec0; /* Dashed border for file input */
+            padding: 1.5rem; /* More padding */
+            border-radius: 0.75rem;
+            background-color: #f0f4f8;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            color: #4a5568;
+            text-align: center;
+        }
+
+        .cv-upload-form-container input[type="file"]:hover {
+            border-color: var(--primary-color);
+            background-color: #e6ffed; /* Light green on hover */
+        }
+
+        .cv-upload-form-container button[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            transition: all 0.3s ease-in-out;
+            font-size: 1.1rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cv-upload-form-container button[type="submit"]:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive adjustments for the form */
+        @media (max-width: 768px) {
+            .cv-upload-form-container {
+                padding: 2rem;
+            }
+            .cv-upload-form-container input[type="text"],
+            .cv-upload-form-container input[type="email"],
+            .cv-upload-form-container select,
+            .cv-upload-form-container input[type="file"],
+            .cv-upload-form-container button[type="submit"] {
+                font-size: 0.95rem;
+                padding: 0.8rem;
+            }
+        }
+
+        /* Hero content specific styling for better prominence */
+        .hero-banner .hero-banner-overlay {
+            /* Changed to a vibrant blue-purple gradient */
+            background-color: rgba(0, 0, 0, 0.65); /* Fallback */
+            background-image: linear-gradient(to top, rgba(74, 85, 162, 0.7), rgba(129, 140, 248, 0.4)); /* Blue-purple gradient */
+        }
+        .hero-banner h1 {
+            font-size: 3.8rem; /* Larger and more impactful */
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.6); /* More pronounced text shadow */
+            animation: fadeIn 1.2s ease-out forwards; /* Fade in animation */
+        }
+        .hero-banner p {
+            font-size: 1.8rem; /* Larger and more readable */
+            margin-bottom: 2.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            animation: fadeIn 1.2s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+        .hero-banner .cta-button {
+            animation: fadeInUp 1.2s ease-out forwards;
+            animation-delay: 0.6s;
+        }
+
+        /* General Section Animations */
+        .animated-section-heading {
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+        }
+        .animated-paragraph {
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+        .animated-grid-item {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        /* Staggered delays for grid items */
+        .animated-grid-item:nth-child(1) { animation-delay: 0.1s; }
+        .animated-grid-item:nth-child(2) { animation-delay: 0.2s; }
+        .animated-grid-item:nth-child(3) { animation-delay: 0.3s; }
+        .animated-grid-item:nth-child(4) { animation-delay: 0.4s; }
+        .animated-grid-item:nth-child(5) { animation-delay: 0.5s; }
+        .animated-grid-item:nth-child(6) { animation-delay: 0.6s; }
+        .animated-grid-item:nth-child(7) { animation-delay: 0.7s; }
+        .animated-grid-item:nth-child(8) { animation-delay: 0.8s; }
+        .animated-grid-item:nth-child(9) { animation-delay: 0.9s; }
+
+        /* Navbar animation */
+        .navbar-animated {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Modal Styles */
+        .job-modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+            backdrop-filter: blur(5px); /* Glass effect */
+            -webkit-backdrop-filter: blur(5px); /* For Safari */
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .job-modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 15px;
+            position: relative;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        .job-modal-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .job-modal-content p {
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .job-modal-content ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .job-modal-content li {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .job-modal-content strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .job-modal-content .apply-button {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            font-size: 1rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .job-modal-content .apply-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .job-modal-content .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #aaa;
+            transition: color 0.3s ease;
+        }
+
+        .job-modal-content .close-button:hover,
+        .job-modal-content .close-button:focus {
+            color: var(--primary-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 0px 0px #16A34A44; }
+            50% { box-shadow: 0 0 16px 4px #16A34A88; }
+            100% { box-shadow: 0 0 0px 0px #16A34A44; }
+        }
+        .job-modal a.apply-button, .job-modal a[class*='bg-gradient-to-'] {
+            animation: glow 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+<div id="globalMessageBox" class="global-message-box" style="display:none;position:fixed;top:0;left:0;width:100%;z-index:9999;text-align:center;padding:1em;font-weight:bold;"></div>
+    <nav class="bg-white shadow-lg py-3 sm:py-4 navbar-animated">
+        <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-12">
+            <div class="flex items-center">
+                <img src="logo.jpg" alt="Muster Consultants Logo" class="h-12 sm:h-14 lg:h-16 mr-3 sm:mr-4 rounded-md">
+                <a href="index.html" class="text-primary-color font-bold text-lg sm:text-xl tracking-wide leading-tight">Muster Consultants<br> Pvt Ltd</a>
+            </div>
+            <div class="hidden md:flex flex-row space-x-4 lg:space-x-6">
+                <a href="index.html" class="text-primary-color font-medium nav-link text-sm lg:text-base focus:outline-none focus-visible:outline-none">HOME</a>
+                <div class="relative group">
+                    <a href="#" class="text-gray-700 hover:text-primary-color font-medium nav-link inline-flex items-center text-sm lg:text-base focus:outline-none focus-visible:outline-none">ABOUT US</a>
+                    <div class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-opacity duration-200 z-50 border border-gray-100">
+                        <a href="about.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">About Us</a>
+                        <a href="gallery.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">Gallery</a>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <a href="#" class="text-gray-700 hover:text-primary-color font-medium nav-link inline-flex items-center text-sm lg:text-base focus:outline-none focus-visible:outline-none">SERVICES</a>
+                    <div class="absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-opacity duration-200 z-50 border border-gray-100">
+                        <a href="leadership_hiring.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">Leadership Hiring</a>
+                        <a href="rpo.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">Recruitment Process Outsourcing (RPO)</a>
+                        <a href="permanent_staffing.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">Permanent Staffing</a>
+                        <a href="contract_staffing.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">Contract Staffing</a>
+                        <a href="specialist_services.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">Specialist Services</a>
+                        <a href="hr_support.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">Other Recruitment & HR Support</a>
+                        <a href="training_development.html" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-primary-color nav-link text-sm focus:outline-none focus-visible:outline-none">Training & Development</a>
+                    </div>
+                </div>
+                <a href="seeker.html" class="text-gray-700 hover:text-primary-color font-medium nav-link text-sm lg:text-base focus:outline-none focus-visible:outline-none">CURRENT OPENINGS</a>
+                <a href="industries_served.html" class="text-gray-700 hover:text-primary-color font-medium nav-link text-sm lg:text-base focus:outline-none focus-visible:outline-none">INDUSTRIES SERVED</a>
+                <a href="contact.html" class="text-gray-700 hover:text-primary-color font-medium nav-link text-sm lg:text-base focus:outline-none focus-visible:outline-none">CONTACT US</a>
+            </div>
+            <button id="mobile-menu-toggle" class="md:hidden flex items-center px-2 sm:px-3 py-2 border rounded-lg text-primary-color border-primary-color focus:outline-none hover:bg-primary-color hover:text-white transition-colors duration-200" aria-label="Open menu">
+                <svg class="h-6 w-6 sm:h-7 sm:w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden"></div>
+        <div id="mobile-menu" class="fixed top-0 left-0 w-80 max-w-full h-full bg-white shadow-2xl z-50 transform -translate-x-full transition-transform duration-300 md:hidden">
+            <div class="flex items-center px-6 py-4 border-b">
+                <img src="logo.jpg" alt="Muster Consultants Logo" class="h-12 w-12 rounded-md mr-3">
+                <span class="font-bold text-lg text-primary-color leading-tight">Muster Consultants<br>Pvt Ltd</span>
+                <button id="mobile-menu-close" class="ml-auto text-gray-700 hover:text-primary-color focus:outline-none" aria-label="Close menu">
+                    <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <nav class="flex flex-col px-6 py-4 space-y-2">
+                <a href="index.html" class="py-2 text-primary-color font-medium nav-link focus:outline-none focus-visible:outline-none">HOME</a>
+                <div class="relative">
+                    <button id="mobile-aboutus-toggle" class="w-full flex justify-between items-center py-2 text-gray-700 hover:text-primary-color font-medium nav-link focus:outline-none focus-visible:outline-none">
+                        ABOUT US
+                        <svg id="mobile-aboutus-caret" class="h-5 w-5 ml-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="mobile-aboutus-dropdown" class="hidden flex-col pl-4 space-y-1 mt-1">
+                        <a href="about.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">About Us</a>
+                        <a href="gallery.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">Gallery</a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <button id="mobile-services-toggle" class="w-full flex justify-between items-center py-2 text-gray-700 hover:text-primary-color font-medium nav-link focus:outline-none focus-visible:outline-none">
+                        SERVICES
+                        <svg id="mobile-services-caret" class="h-5 w-5 ml-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="mobile-services-dropdown" class="hidden flex-col pl-4 space-y-1 mt-1">
+                        <a href="leadership_hiring.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">Leadership Hiring</a>
+                        <a href="rpo.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">Recruitment Process Outsourcing (RPO)</a>
+                        <a href="permanent_staffing.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">Permanent Staffing</a>
+                        <a href="contract_staffing.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">Contract Staffing</a>
+                        <a href="specialist_services.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">Specialist Services</a>
+                        <a href="hr_support.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">Other Recruitment & HR Support</a>
+                        <a href="training_development.html" class="block py-2 text-gray-700 hover:text-primary-color nav-link focus:outline-none focus-visible:outline-none">Training & Development</a>
+                    </div>
+                </div>
+                <a href="seeker.html" class="py-2 text-gray-700 hover:text-primary-color font-medium nav-link focus:outline-none focus-visible:outline-none">CURRENT OPENINGS</a>
+                <a href="industries_served.html" class="py-2 text-gray-700 hover:text-primary-color font-medium nav-link focus:outline-none focus-visible:outline-none">INDUSTRIES SERVED</a>
+                <a href="contact.html" class="py-2 text-gray-700 hover:text-primary-color font-medium nav-link focus:outline-none focus-visible:outline-none">CONTACT US</a>
+            </nav>
+        </div>
+    </nav>
+<script>
+// Mobile menu toggle
+const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+const mobileMenuClose = document.getElementById('mobile-menu-close');
+const mobileServicesToggle = document.getElementById('mobile-services-toggle');
+const mobileServicesDropdown = document.getElementById('mobile-services-dropdown');
+const mobileServicesCaret = document.getElementById('mobile-services-caret');
+const mobileAboutUsToggle = document.getElementById('mobile-aboutus-toggle');
+const mobileAboutUsDropdown = document.getElementById('mobile-aboutus-dropdown');
+const mobileAboutUsCaret = document.getElementById('mobile-aboutus-caret');
+
+function openMobileMenu() {
+  mobileMenu.classList.remove('-translate-x-full');
+  mobileMenuOverlay.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobileMenu() {
+  mobileMenu.classList.add('-translate-x-full');
+  mobileMenuOverlay.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+mobileMenuToggle.addEventListener('click', openMobileMenu);
+mobileMenuClose.addEventListener('click', closeMobileMenu);
+mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+// SERVICES dropdown in mobile menu
+mobileServicesToggle.addEventListener('click', function() {
+  const isOpen = !mobileServicesDropdown.classList.contains('hidden');
+  if (isOpen) {
+    mobileServicesDropdown.classList.add('hidden');
+    mobileServicesCaret.classList.remove('rotate-180');
+  } else {
+    mobileServicesDropdown.classList.remove('hidden');
+    mobileServicesCaret.classList.add('rotate-180');
+  }
+});
+
+// ABOUT US dropdown in mobile menu
+mobileAboutUsToggle.addEventListener('click', function() {
+  const isOpen = !mobileAboutUsDropdown.classList.contains('hidden');
+  if (isOpen) {
+    mobileAboutUsDropdown.classList.add('hidden');
+    mobileAboutUsCaret.classList.remove('rotate-180');
+  } else {
+    mobileAboutUsDropdown.classList.remove('hidden');
+    mobileAboutUsCaret.classList.add('rotate-180');
+  }
+});
+</script>
+
+    <!-- Hero Banner for Job Seeker -->
+    <section class="hero-banner hero-about relative" style="background: url('industry-swerved.jpg') center /cover no-repeat;">
+        <div class="hero-banner-overlay" style="z-index: 1;"></div>
+        <div class="container mx-auto relative z-10 px-6 md:px-12 py-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 animated-section-heading">FIND YOUR DREAM JOB</h1>
+            <p class="text-lg md:text-xl animated-paragraph" style="animation-delay: 0.5s;">Upload your CV and tell us your preferred field</p>
+        </div>
+    </section>
+
+    <!-- Remove any form or section for uploading CV. Only keep the job openings and Google Form apply buttons. -->
+
+    <!-- Current Job Openings Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 section-heading animated-section-heading">Current Job Openings</h2>
+                <p class="text-lg text-gray-600 animated-paragraph">Explore exciting career opportunities with Muster Consultants</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Relationship Officer -->
+                <div class="job-card relative bg-gradient-to-br from-white via-gray-50 to-blue-50 rounded-2xl shadow-lg p-8 transition-transform transform hover:scale-105 hover:shadow-2xl border border-blue-200 flex-1 flex flex-col items-start cursor-pointer overflow-hidden group" onclick="openModal('modal1')">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 to-green-500 rounded-t-2xl"></div>
+                    <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md animate-pulse">Urgent</span>
+                    <div class="text-4xl mb-3 text-primary-color transition-transform duration-300 group-hover:animate-bounce"><i class="fas fa-handshake"></i></div>
+                    <h3 class="text-xl font-semibold mb-1 text-primary-color">Relationship Officer</h3>
+                    <p class="text-gray-600 mb-2 italic">Build and maintain client relationships</p>
+                    <p class="text-gray-700 mb-4">Check the job description and apply online.</p>
+                </div>
+
+                <!-- Relationship Manager -->
+                <div class="job-card relative bg-gradient-to-br from-white via-gray-50 to-blue-50 rounded-2xl shadow-lg p-8 transition-transform transform hover:scale-105 hover:shadow-2xl border border-blue-200 flex-1 flex flex-col items-start cursor-pointer overflow-hidden group" onclick="openModal('modal2')">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 to-green-500 rounded-t-2xl"></div>
+                    <span class="absolute top-4 right-4 bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md animate-pulse">New</span>
+                    <div class="text-4xl mb-3 text-primary-color transition-transform duration-300 group-hover:animate-bounce"><i class="fas fa-user-tie"></i></div>
+                    <h3 class="text-xl font-semibold mb-1 text-primary-color">Relationship Manager</h3>
+                    <p class="text-gray-600 mb-2 italic">Lead client relationships and business development</p>
+                    <p class="text-gray-700 mb-4">Check the job description and apply online.</p>
+                </div>
+
+                <!-- Sales Manager -->
+                <div class="job-card relative bg-gradient-to-br from-white via-gray-50 to-blue-50 rounded-2xl shadow-lg p-8 transition-transform transform hover:scale-105 hover:shadow-2xl border border-blue-200 flex-1 flex flex-col items-start cursor-pointer overflow-hidden group" onclick="openModal('modal3')">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 to-green-500 rounded-t-2xl"></div>
+                    <span class="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md animate-pulse">Hot</span>
+                    <div class="text-4xl mb-3 text-primary-color transition-transform duration-300 group-hover:animate-bounce"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="text-xl font-semibold mb-1 text-primary-color">Sales Manager</h3>
+                    <p class="text-gray-600 mb-2 italic">Drive sales growth and team performance</p>
+                    <p class="text-gray-700 mb-4">Check the job description and apply online.</p>
+                </div>
+
+                <!-- Recruiter/HR Recruiter -->
+                <div class="job-card relative bg-gradient-to-br from-white via-gray-50 to-blue-50 rounded-2xl shadow-lg p-8 transition-transform transform hover:scale-105 hover:shadow-2xl border border-blue-200 flex-1 flex flex-col items-start cursor-pointer overflow-hidden group" onclick="openModal('modal4')">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 to-green-500 rounded-t-2xl"></div>
+                    <span class="absolute top-4 right-4 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md animate-pulse">Open</span>
+                    <div class="text-4xl mb-3 text-primary-color transition-transform duration-300 group-hover:animate-bounce"><i class="fas fa-users"></i></div>
+                    <h3 class="text-xl font-semibold mb-1 text-primary-color">Recruiter / HR Recruiter</h3>
+                    <p class="text-gray-600 mb-2 italic">Source, screen, and place top talent for our clients</p>
+                    <p class="text-gray-700 mb-4">Check the job description and apply online.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Relationship Officer -->
+    <div id="modal1" class="job-modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-xl shadow-lg max-w-lg w-full p-8 relative animate-fadeIn">
+            <button onclick="closeModal('modal1')" class="absolute top-4 right-4 text-gray-500 hover:text-primary-color text-2xl font-bold">&times;</button>
+            <div class="text-4xl mb-3 text-primary-color"><i class="fas fa-handshake"></i></div>
+            <h3 class="text-2xl font-semibold mb-1 text-primary-color">Relationship Officer</h3>
+            <p class="text-gray-600 mb-2 italic">Build and maintain client relationships</p>
+            <div class="text-gray-700 mb-4 text-left">
+                <strong>Requirements:</strong>
+                <ul class="list-disc ml-6">
+                    <li>Bachelor's degree in Business, Marketing, or related field</li>
+                    <li>1-2 years of experience in client relationship management</li>
+                    <li>Excellent communication and interpersonal skills</li>
+                    <li>Strong problem-solving and analytical abilities</li>
+                    <li>Proficiency in MS Office and CRM tools</li>
+                </ul>
+            </div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUD-xRnH5CD3VoMmrXdMQPr7rcki4Pj9A_vXi2HJKME5jCBw/viewform?usp=header" target="_blank" rel="noopener" class="inline-block bg-gradient-to-r from-blue-600 to-green-500 text-white font-semibold px-8 py-2 rounded-full shadow-lg hover:from-green-500 hover:to-blue-600 transition-all duration-300 animate-pulse mt-2">Apply Now</a>
+        </div>
+    </div>
+
+    <!-- Modal for Relationship Manager -->
+    <div id="modal2" class="job-modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-xl shadow-lg max-w-lg w-full p-8 relative animate-fadeIn">
+            <button onclick="closeModal('modal2')" class="absolute top-4 right-4 text-gray-500 hover:text-primary-color text-2xl font-bold">&times;</button>
+            <div class="text-4xl mb-3 text-primary-color"><i class="fas fa-user-tie"></i></div>
+            <h3 class="text-2xl font-semibold mb-1 text-primary-color">Relationship Manager</h3>
+            <p class="text-gray-600 mb-2 italic">Lead client relationships and business development</p>
+            <div class="text-gray-700 mb-4 text-left">
+                <strong>Requirements:</strong>
+                <ul class="list-disc ml-6">
+                    <li>Bachelor's degree in Business, Marketing, or related field</li>
+                    <li>3-5 years of experience in relationship management</li>
+                    <li>Proven track record of client retention and growth</li>
+                    <li>Strong leadership and team management skills</li>
+                    <li>Excellent negotiation and presentation skills</li>
+                    <li>Experience in the recruitment/HR industry preferred</li>
+                </ul>
+            </div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUD-xRnH5CD3VoMmrXdMQPr7rcki4Pj9A_vXi2HJKME5jCBw/viewform?usp=header" target="_blank" rel="noopener" class="inline-block bg-gradient-to-r from-blue-600 to-green-500 text-white font-semibold px-8 py-2 rounded-full shadow-lg hover:from-green-500 hover:to-blue-600 transition-all duration-300 animate-pulse mt-2">Apply Now</a>
+        </div>
+    </div>
+
+    <!-- Modal for Sales Manager -->
+    <div id="modal3" class="job-modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-xl shadow-lg max-w-lg w-full p-8 relative animate-fadeIn">
+            <button onclick="closeModal('modal3')" class="absolute top-4 right-4 text-gray-500 hover:text-primary-color text-2xl font-bold">&times;</button>
+            <div class="text-4xl mb-3 text-primary-color"><i class="fas fa-chart-line"></i></div>
+            <h3 class="text-2xl font-semibold mb-1 text-primary-color">Sales Manager</h3>
+            <p class="text-gray-600 mb-2 italic">Drive sales growth and team performance</p>
+            <div class="text-gray-700 mb-4 text-left">
+                
+                <strong>Requirements:</strong>
+                <ul class="list-disc ml-6">
+                    <li>Bachelor's degree in Business, Sales, or related field</li>
+                    <li>2+ years of experience in sales management</li>
+                    <li>Proven track record of meeting/exceeding sales targets</li>
+                    <li>Strong leadership and team management skills</li>
+                    <li>Excellent communication and negotiation skills</li>
+                    <li>Experience in B2B sales preferred</li>
+                    <li>Proficiency in CRM and sales analytics tools</li>
+                </ul>
+            </div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUD-xRnH5CD3VoMmrXdMQPr7rcki4Pj9A_vXi2HJKME5jCBw/viewform?usp=header" target="_blank" rel="noopener" class="inline-block bg-gradient-to-r from-blue-600 to-green-500 text-white font-semibold px-8 py-2 rounded-full shadow-lg hover:from-green-500 hover:to-blue-600 transition-all duration-300 animate-pulse mt-2">Apply Now</a>
+        </div>
+    </div>
+
+    <!-- Modal for Recruiter/HR Recruiter -->
+    <div id="modal4" class="job-modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-xl shadow-lg max-w-lg w-full p-8 relative animate-fadeIn">
+            <button onclick="closeModal('modal4')" class="absolute top-4 right-4 text-gray-500 hover:text-primary-color text-2xl font-bold">&times;</button>
+            <div class="text-4xl mb-3 text-primary-color"><i class="fas fa-users"></i></div>
+            <h3 class="text-2xl font-semibold mb-1 text-primary-color">Recruiter / HR Recruiter</h3>
+            <p class="text-gray-600 mb-2 italic">Source, screen, and place top talent for our clients</p>
+            <div class="text-gray-700 mb-4 text-left">
+                <strong>Requirements:</strong>
+                <ul class="list-disc ml-6">
+                    <li>Bachelor's degree in HR, Business, or related field</li>
+                    <li>6+ months experience in recruitment or HR</li>
+                    <li>Strong communication and organizational skills</li>
+                    <li>Proficiency in recruitment tools and platforms</li>
+                    <li>Ability to work in a fast-paced environment</li>
+                    <li>Knowledge of employment laws and regulations</li>
+                </ul>
+            </div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUD-xRnH5CD3VoMmrXdMQPr7rcki4Pj9A_vXi2HJKME5jCBw/viewform?usp=header" target="_blank" rel="noopener" class="inline-block bg-gradient-to-r from-blue-600 to-green-500 text-white font-semibold px-8 py-2 rounded-full shadow-lg hover:from-green-500 hover:to-blue-600 transition-all duration-300 animate-pulse mt-2">Apply Now</a>
+        </div>
+    </div>
+
+
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+        document.querySelectorAll('.job-modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeModal(modal.id);
+            });
+        });
+    </script>
+
+    <!-- Footer (Consistent with other pages) -->
+    <footer class="footer-bg text-white py-8 sm:py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            <!-- Company Info -->
+            <div class="col-span-1 animated-grid-item" style="animation-delay: 0.1s;">
+                <!-- Muster Logo -->
+                <img src="logo.jpg" alt="Muster Consultants Footer Logo" class="h-16 mb-4 rounded-md footer-logo">
+                <p class="text-gray-400 mb-4">
+                    We have over 10 years of experience in connecting talent with opportunity.
+                </p>
+                <p class="text-gray-400 mb-4">
+                    At Muster Consultants Pvt Ltd, we are committed to Performance, Quality, and Results.
+                </p>
+                <a href="https://www.google.com/maps/place/Muster+Consultants+Pvt.+Ltd/@28.7089456,77.1183545,16.08z/data=!4m6!3m5!1s0x390d077a0c24db2b:0x7ac67beb3c37b9c4!8m2!3d28.7095423!4d77.1231909!16s%2Fg%2F11nwxf0tfd?authuser=0&entry=ttu&g_ep=EgoyMDI1MDcwOS4wIKXMDSoASAFQAw%3D%3D" class="text-primary-color hover:text-accent-color text-sm flex items-center footer-link">
+                    <i class="fas fa-map-marker-alt mr-2"></i> Find Us on Google Maps
+                </a>
+            </div>
+            <!-- Follow Us -->
+            <div class="col-span-1 animated-grid-item" style="animation-delay: 0.2s;">
+                <h4 class="text-xl font-semibold mb-4">FOLLOW US</h4>
+                <ul class="space-y-3">
+                    <li><a href="https://www.facebook.com/share/1CYqAmXa6U/" class="footer-link flex items-center"><i class="fab fa-facebook-f mr-3 footer-social-icon"></i> Facebook</a></li>
+                    <li><a href="https://www.linkedin.com/company/muster-consultants-pvt-ltd/posts/?feedView=all" class="footer-link flex items-center"><i class="fab fa-linkedin-in mr-3 footer-social-icon"></i> LinkedIn</a></li>
+                    <li><a href="https://x.com/MusterHr5" class="footer-link flex items-center"><i class="fab fa-twitter mr-3 footer-social-icon"></i> Twitter</a></li>
+                    <li><a href="https://www.instagram.com/muster_consultants_official/" class="footer-link flex items-center"><i class="fab fa-instagram mr-3 footer-social-icon"></i>instagram</a></li>
+                </ul>
+            </div>
+            <!-- Our Services -->
+            <div class="col-span-1 animated-grid-item" style="animation-delay: 0.3s;">
+                <h4 class="text-xl font-semibold mb-4">OUR SERVICES</h4>
+                <ul class="space-y-3">
+                    <li><a href="leadership_hiring.html" class="footer-link flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Leadership Hiring</a></li>
+                    <li><a href="rpo.html" class="footer-link flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Recruitment Process Outsourcing</a></li>
+                    <li><a href="permanent_staffing.html" class="footer-link flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Permanent Staffing</a></li>
+                    <li><a href="contract_staffing.html" class="footer-link flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Contract Staffing</a></li>
+                    <li><a href="specialist_services.html" class="footer-link flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Specialist Services</a></li>
+                    <li><a href="hr_support.html" class="footer-link flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Other Recruitment & HR Support</a></li>
+                    <li><a href="training_development.html" class="footer-link flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Training & Development</a></li>
+                </ul>
+            </div>
+            <!-- Subscribe Us -->
+            <div class="col-span-1 animated-grid-item" style="animation-delay: 0.4s;">
+                <h4 class="text-xl font-semibold mb-4">SUBSCRIBE US</h4>
+                <p class="text-gray-400 mb-4">
+                    Sign up for our mailing list to get the latest updates and news directly to your inbox.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-2">
+                    <input type="email" placeholder="Enter your email" class="flex-grow p-3 rounded-md sm:rounded-l-md sm:rounded-r-none footer-subscribe-input" required>
+                    <button class="p-3 text-white rounded-md sm:rounded-l-none sm:rounded-r-md footer-subscribe-button">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="hidden text-green-400 font-semibold mt-2" id="subscribe-success">You have successfully subscribed to our newsletter!</div>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-6 sm:mt-8 pt-4 sm:pt-6 text-center text-gray-500 text-xs sm:text-sm px-4">
+            &copy; Copyright Muster Consultants Pvt Ltd. All rights reserved. | Design by - Manvendra Mishra and Sachin kumar
+        </div>
+    </footer>
+<script>
+// Dropdown menu fix: keep open on hover, close only when mouse leaves dropdown
+document.querySelectorAll('.group').forEach(function(group) {
+  var dropdown = group.querySelector('div.absolute');
+  var trigger = group.querySelector('a.inline-flex');
+  if (!dropdown || !trigger) return;
+  let closeTimeout;
+  function openMenu() {
+    dropdown.classList.add('group-hover:opacity-100', 'group-hover:visible');
+    dropdown.classList.remove('opacity-0', 'invisible');
+    clearTimeout(closeTimeout);
+  }
+  function closeMenu() {
+    closeTimeout = setTimeout(function() {
+      dropdown.classList.remove('group-hover:opacity-100', 'group-hover:visible');
+      dropdown.classList.add('opacity-0', 'invisible');
+    }, 150);
+  }
+  group.addEventListener('mouseenter', openMenu);
+  group.addEventListener('mouseleave', closeMenu);
+  dropdown.addEventListener('mouseenter', openMenu);
+  dropdown.addEventListener('mouseleave', closeMenu);
+  trigger.addEventListener('focus', openMenu);
+  trigger.addEventListener('blur', closeMenu);
+});
+</script>
+<script>
+const subscribeInput = document.querySelector('.footer-subscribe-input');
+const subscribeBtn = document.querySelector('.footer-subscribe-button');
+const subscribeSuccess = document.getElementById('subscribe-success');
+if (subscribeInput && subscribeBtn) {
+    subscribeBtn.addEventListener('click', async function(e) {
+        e.preventDefault();
+        const email = subscribeInput.value.trim();
+        if (!email) {
+            return;
+        }
+        subscribeBtn.disabled = true;
+        try {
+            const res = await fetch('http://localhost:5000/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            if (res.ok) {
+                subscribeInput.value = '';
+                subscribeSuccess.classList.remove('hidden');
+            }
+        } catch (err) {
+        }
+        subscribeBtn.disabled = false;
+    });
+}
+</script>
+</body>
+</html>
