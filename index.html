@@ -808,7 +808,7 @@ mobileAboutUsToggle.addEventListener('click', function() {
                 </p>
                 <div class="flex flex-col sm:flex-row gap-2">
                     <input type="email" placeholder="Enter your email" class="flex-grow p-3 rounded-md sm:rounded-l-md sm:rounded-r-none footer-subscribe-input" required>
-                    <button class="p-3 text-white rounded-md sm:rounded-l-none sm:rounded-r-md footer-subscribe-button">
+                    <button class="p-3 text-white rounded-md sm:rounded-l-none sm:rounded-r-md footer-subscribe-button focus:outline-none focus-visible:outline-none">
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
@@ -845,7 +845,8 @@ document.querySelectorAll('.group').forEach(function(group) {
   trigger.addEventListener('blur', closeMenu);
 });
 </script>
-<script>
+<script type="module">
+import { db, collection, addDoc } from './firebase.js';
 const subscribeInput = document.querySelector('.footer-subscribe-input');
 const subscribeBtn = document.querySelector('.footer-subscribe-button');
 const subscribeSuccess = document.getElementById('subscribe-success');
@@ -858,16 +859,11 @@ if (subscribeInput && subscribeBtn) {
         }
         subscribeBtn.disabled = true;
         try {
-            const res = await fetch('http://localhost:5000/api/subscribe', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            });
-            if (res.ok) {
-                subscribeInput.value = '';
-                subscribeSuccess.classList.remove('hidden');
-            }
+            await addDoc(collection(db, "subscriptions"), { email, created: new Date() });
+            subscribeInput.value = '';
+            subscribeSuccess.classList.remove('hidden');
         } catch (err) {
+            alert('Error subscribing: ' + err.message);
         }
         subscribeBtn.disabled = false;
     });

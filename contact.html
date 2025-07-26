@@ -342,38 +342,33 @@ mobileAboutUsToggle.addEventListener('click', function() {
                         <div class="mt-4 text-green-600 font-semibold flex items-center justify-center"><i class="fas fa-check-circle mr-2"></i>Thank you! Your message has been sent.</div>
                     </div>
                 </form>
-                <script>
-                document.getElementById('contactForm').addEventListener('submit', async function(e) {
-                    e.preventDefault();
-                    const form = e.target;
-                    const data = {
-                        name: form.name.value,
-                        email: form.email.value,
-                        subject: form.subject.value,
-                        message: form.message.value
-                    };
-                    const btn = form.querySelector('button[type="submit"]');
-                    btn.disabled = true;
-                    btn.textContent = 'Sending...';
-                    try {
-                        const res = await fetch('http://localhost:5000/api/contact', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(data)
-                        });
-                        if (res.ok) {
-                            form.reset();
-                            showGlobalMessage('Thank you! Your message has been sent.', 'success');
-                        } else {
-                            showGlobalMessage('There was an error sending your message.', 'error');
-                        }
-                    } catch (err) {
-                        showGlobalMessage('There was an error sending your message.', 'error');
-                    }
-                    btn.disabled = false;
-                    btn.textContent = 'Send Message';
-                });
-                </script>
+                <script type="module">
+import { db, collection, addDoc } from './firebase.js';
+
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = {
+        name: form.name.value,
+        email: form.email.value,
+        subject: form.subject.value,
+        message: form.message.value,
+        created: new Date()
+    };
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    try {
+        await addDoc(collection(db, "contacts"), data);
+        form.reset();
+        document.getElementById('success-message').classList.remove('hidden');
+    } catch (err) {
+        alert('There was an error sending your message: ' + err.message);
+    }
+    btn.disabled = false;
+    btn.textContent = 'Send Message';
+});
+</script>
             </div>
         </div>
     </section>
@@ -446,44 +441,40 @@ mobileAboutUsToggle.addEventListener('click', function() {
                 </p>
                 <div class="flex flex-col sm:flex-row gap-2">
                     <input type="email" placeholder="Enter your email" class="flex-grow p-3 rounded-md sm:rounded-l-md sm:rounded-r-none footer-subscribe-input" required>
-                    <button class="p-3 text-white rounded-md sm:rounded-l-none sm:rounded-r-md footer-subscribe-button">
+                    <button class="p-3 text-white rounded-md sm:rounded-l-none sm:rounded-r-md footer-subscribe-button focus:outline-none focus-visible:outline-none">
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
+                <div class="hidden text-green-400 font-semibold mt-2" id="subscribe-success">You have successfully subscribed to our newsletter!</div>
             </div>
         </div>
         <div class="border-t border-gray-700 mt-6 sm:mt-8 pt-4 sm:pt-6 text-center text-gray-500 text-xs sm:text-sm px-4">
                             &copy; Copyright Muster Consultants Pvt Ltd. All rights reserved. | Design by - Manvendra Mishra and Sachin kumar
         </div>
-        <div class="hidden text-green-400 font-semibold mt-2" id="subscribe-success">You have successfully subscribed to our newsletter!</div>
-        <script>
-        const subscribeInput = document.querySelector('.footer-subscribe-input');
-        const subscribeBtn = document.querySelector('.footer-subscribe-button');
-        const subscribeSuccess = document.getElementById('subscribe-success');
-        if (subscribeInput && subscribeBtn) {
-            subscribeBtn.addEventListener('click', async function(e) {
-                e.preventDefault();
-                const email = subscribeInput.value.trim();
-                if (!email) {
-                    return;
-                }
-                subscribeBtn.disabled = true;
-                try {
-                    const res = await fetch('http://localhost:5000/api/subscribe', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email })
-                    });
-                    if (res.ok) {
-                        subscribeInput.value = '';
-                        subscribeSuccess.classList.remove('hidden');
-                    }
-                } catch (err) {
-                }
-                subscribeBtn.disabled = false;
-            });
+        <script type="module">
+import { db, collection, addDoc } from './firebase.js';
+const subscribeInput = document.querySelector('.footer-subscribe-input');
+const subscribeBtn = document.querySelector('.footer-subscribe-button');
+const subscribeSuccess = document.getElementById('subscribe-success');
+if (subscribeInput && subscribeBtn) {
+    subscribeBtn.addEventListener('click', async function(e) {
+        e.preventDefault();
+        const email = subscribeInput.value.trim();
+        if (!email) {
+            return;
         }
-        </script>
+        subscribeBtn.disabled = true;
+        try {
+            await addDoc(collection(db, "subscriptions"), { email, created: new Date() });
+            subscribeInput.value = '';
+            subscribeSuccess.classList.remove('hidden');
+        } catch (err) {
+            alert('Error subscribing: ' + err.message);
+        }
+        subscribeBtn.disabled = false;
+    });
+}
+</script>
     </footer>
 </body>
 </html>

@@ -334,7 +334,9 @@ mobileAboutUsToggle.addEventListener('click', function() {
   }
 });
 </script>
-<script>
+<!-- Only one Firestore subscription script block below -->
+<script type="module">
+import { db, collection, addDoc } from './firebase.js';
 const subscribeInput = document.querySelector('.footer-subscribe-input');
 const subscribeBtn = document.querySelector('.footer-subscribe-button');
 const subscribeSuccess = document.getElementById('subscribe-success');
@@ -347,16 +349,11 @@ if (subscribeInput && subscribeBtn) {
         }
         subscribeBtn.disabled = true;
         try {
-            const res = await fetch('http://localhost:5000/api/subscribe', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            });
-            if (res.ok) {
-                subscribeInput.value = '';
-                subscribeSuccess.classList.remove('hidden');
-            }
+            await addDoc(collection(db, "subscriptions"), { email, created: new Date() });
+            subscribeInput.value = '';
+            subscribeSuccess.classList.remove('hidden');
         } catch (err) {
+            alert('Error subscribing: ' + err.message);
         }
         subscribeBtn.disabled = false;
     });

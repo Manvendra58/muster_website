@@ -535,32 +535,8 @@ mobileAboutUsToggle.addEventListener('click', function() {
                             &copy; Copyright Muster Consultants Pvt Ltd. All rights reserved. | Design by - Manvendra Mishra and Sachin kumar
         </div>
     </footer>
-<script>
-// Dropdown menu fix: keep open on hover, close only when mouse leaves dropdown
-document.querySelectorAll('.group').forEach(function(group) {
-  var dropdown = group.querySelector('div.absolute');
-  var trigger = group.querySelector('a.inline-flex');
-  if (!dropdown || !trigger) return;
-  let closeTimeout;
-  function openMenu() {
-    dropdown.classList.add('group-hover:opacity-100', 'group-hover:visible');
-    dropdown.classList.remove('opacity-0', 'invisible');
-    clearTimeout(closeTimeout);
-  }
-  function closeMenu() {
-    closeTimeout = setTimeout(function() {
-      dropdown.classList.remove('group-hover:opacity-100', 'group-hover:visible');
-      dropdown.classList.add('opacity-0', 'invisible');
-    }, 150);
-  }
-  group.addEventListener('mouseenter', openMenu);
-  group.addEventListener('mouseleave', closeMenu);
-  dropdown.addEventListener('mouseenter', openMenu);
-  dropdown.addEventListener('mouseleave', closeMenu);
-  trigger.addEventListener('focus', openMenu);
-  trigger.addEventListener('blur', closeMenu);
-});
-
+<script type="module">
+import { db, collection, addDoc } from './firebase.js';
 const subscribeInput = document.querySelector('.footer-subscribe-input');
 const subscribeBtn = document.querySelector('.footer-subscribe-button');
 const subscribeSuccess = document.getElementById('subscribe-success');
@@ -568,21 +544,14 @@ if (subscribeInput && subscribeBtn) {
     subscribeBtn.addEventListener('click', async function(e) {
         e.preventDefault();
         const email = subscribeInput.value.trim();
-        if (!email) {
-            return;
-        }
+        if (!email) return;
         subscribeBtn.disabled = true;
         try {
-            const res = await fetch('http://localhost:5000/api/subscribe', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            });
-            if (res.ok) {
-                subscribeInput.value = '';
-                subscribeSuccess.classList.remove('hidden');
-            }
+            await addDoc(collection(db, "subscriptions"), { email, created: new Date() });
+            subscribeInput.value = '';
+            subscribeSuccess.classList.remove('hidden');
         } catch (err) {
+            alert('Error subscribing: ' + err.message);
         }
         subscribeBtn.disabled = false;
     });

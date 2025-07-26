@@ -318,6 +318,8 @@ mobileAboutUsToggle.addEventListener('click', function() {
   }
 });
 
+<script type="module">
+import { db, collection, addDoc } from './firebase.js';
 const subscribeInput = document.querySelector('.footer-subscribe-input');
 const subscribeBtn = document.querySelector('.footer-subscribe-button');
 const subscribeSuccess = document.getElementById('subscribe-success');
@@ -325,28 +327,14 @@ if (subscribeInput && subscribeBtn) {
     subscribeBtn.addEventListener('click', async function(e) {
         e.preventDefault();
         const email = subscribeInput.value.trim();
-        if (!email) {
-            return;
-        }
+        if (!email) return;
         subscribeBtn.disabled = true;
         try {
-            const res = await fetch('http://localhost:5000/api/subscribe', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            });
-            console.log('Status:', res.status);
-            const data = await res.json();
-            console.log('Response:', data);
-            if (res.ok) {
-                subscribeInput.value = '';
-                subscribeSuccess.classList.remove('hidden');
-            } else {
-                const data = await res.json();
-                alert(data.error || 'There was an error subscribing.');
-            }
+            await addDoc(collection(db, "subscriptions"), { email, created: new Date() });
+            subscribeInput.value = '';
+            subscribeSuccess.classList.remove('hidden');
         } catch (err) {
-            alert('There was an error subscribing.');
+            alert('Error subscribing: ' + err.message);
         }
         subscribeBtn.disabled = false;
     });

@@ -268,57 +268,8 @@
                             &copy; Copyright Muster Consultants Pvt Ltd. All rights reserved. | Design by - Manvendra Mishra and Sachin kumar
         </div>
     </footer>
-    <script>
-// Mobile menu toggle
-const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-const mobileMenuClose = document.getElementById('mobile-menu-close');
-const mobileServicesToggle = document.getElementById('mobile-services-toggle');
-const mobileServicesDropdown = document.getElementById('mobile-services-dropdown');
-const mobileServicesCaret = document.getElementById('mobile-services-caret');
-const mobileAboutUsToggle = document.getElementById('mobile-aboutus-toggle');
-const mobileAboutUsDropdown = document.getElementById('mobile-aboutus-dropdown');
-const mobileAboutUsCaret = document.getElementById('mobile-aboutus-caret');
-
-function openMobileMenu() {
-  mobileMenu.classList.remove('-translate-x-full');
-  mobileMenuOverlay.classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-}
-function closeMobileMenu() {
-  mobileMenu.classList.add('-translate-x-full');
-  mobileMenuOverlay.classList.add('hidden');
-  document.body.style.overflow = '';
-}
-mobileMenuToggle.addEventListener('click', openMobileMenu);
-mobileMenuClose.addEventListener('click', closeMobileMenu);
-mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-
-// SERVICES dropdown in mobile menu
-mobileServicesToggle.addEventListener('click', function() {
-  const isOpen = !mobileServicesDropdown.classList.contains('hidden');
-  if (isOpen) {
-    mobileServicesDropdown.classList.add('hidden');
-    mobileServicesCaret.classList.remove('rotate-180');
-  } else {
-    mobileServicesDropdown.classList.remove('hidden');
-    mobileServicesCaret.classList.add('rotate-180');
-  }
-});
-
-// ABOUT US dropdown in mobile menu
-mobileAboutUsToggle.addEventListener('click', function() {
-  const isOpen = !mobileAboutUsDropdown.classList.contains('hidden');
-  if (isOpen) {
-    mobileAboutUsDropdown.classList.add('hidden');
-    mobileAboutUsCaret.classList.remove('rotate-180');
-  } else {
-    mobileAboutUsDropdown.classList.remove('hidden');
-    mobileAboutUsCaret.classList.add('rotate-180');
-  }
-});
-
+    <script type="module">
+import { db, collection, addDoc } from './firebase.js';
 const subscribeInput = document.querySelector('.footer-subscribe-input');
 const subscribeBtn = document.querySelector('.footer-subscribe-button');
 const subscribeSuccess = document.getElementById('subscribe-success');
@@ -326,21 +277,14 @@ if (subscribeInput && subscribeBtn) {
     subscribeBtn.addEventListener('click', async function(e) {
         e.preventDefault();
         const email = subscribeInput.value.trim();
-        if (!email) {
-            return;
-        }
+        if (!email) return;
         subscribeBtn.disabled = true;
         try {
-            const res = await fetch('http://localhost:5000/api/subscribe', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            });
-            if (res.ok) {
-                subscribeInput.value = '';
-                subscribeSuccess.classList.remove('hidden');
-            }
+            await addDoc(collection(db, "subscriptions"), { email, created: new Date() });
+            subscribeInput.value = '';
+            subscribeSuccess.classList.remove('hidden');
         } catch (err) {
+            alert('Error subscribing: ' + err.message);
         }
         subscribeBtn.disabled = false;
     });

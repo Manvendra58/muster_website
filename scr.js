@@ -1036,21 +1036,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 subscribeButton.disabled = true;
                 try {
-                    const res = await fetch('http://localhost:5000/api/subscribe', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email })
+                    // Firestore subscription logic
+                    import('./firebase.js').then(({ db, collection, addDoc }) => {
+                        addDoc(collection(db, "subscriptions"), { email, created: new Date() })
+                            .then(() => {
+                                subscribeForm.value = '';
+                                showGlobalMessage('Thank you for subscribing!', 'success');
+                            })
+                            .catch(err => {
+                                showGlobalMessage('There was an error subscribing: ' + err.message, 'error');
+                            })
+                            .finally(() => {
+                                subscribeButton.disabled = false;
+                            });
                     });
-                    if (res.ok) {
-                        subscribeForm.value = '';
-                        showGlobalMessage('Thank you for subscribing!', 'success');
-                    } else {
-                        showGlobalMessage('There was an error subscribing.', 'error');
-                    }
                 } catch (err) {
                     showGlobalMessage('There was an error subscribing.', 'error');
+                    subscribeButton.disabled = false;
                 }
-                subscribeButton.disabled = false;
             });
         }
 
@@ -1168,21 +1171,24 @@ document.addEventListener('DOMContentLoaded', function() {
             
             subscribeButton.disabled = true;
             try {
-                const res = await fetch('http://localhost:5000/api/subscribe', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email })
+                // Firestore subscription logic
+                import('./firebase.js').then(({ db, collection, addDoc }) => {
+                    addDoc(collection(db, "subscriptions"), { email, created: new Date() })
+                        .then(() => {
+                            subscribeForm.value = '';
+                            showGlobalMessage('Thank you for subscribing!', 'success');
+                        })
+                        .catch(err => {
+                            showGlobalMessage('There was an error subscribing: ' + err.message, 'error');
+                        })
+                        .finally(() => {
+                            subscribeButton.disabled = false;
+                        });
                 });
-                if (res.ok) {
-                    subscribeForm.value = '';
-                    showGlobalMessage('Thank you for subscribing!', 'success');
-                } else {
-                    showGlobalMessage('There was an error subscribing.', 'error');
-                }
             } catch (err) {
                 showGlobalMessage('There was an error subscribing.', 'error');
+                subscribeButton.disabled = false;
             }
-            subscribeButton.disabled = false;
         });
     }
 
