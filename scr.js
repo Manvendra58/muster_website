@@ -702,7 +702,7 @@ function setupCVUploadIcon() {
     // Event listener to open Google Form in new tab
     cvUploadIcon.addEventListener('click', function() {
         // Google Form URL for CV upload
-        const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdUD-xRnH5CD3VoMmrXdMQPr7rcki4Pj9A_vXi2HJKME5jCBw/viewform?usp=header';
+        const googleFormUrl = 'https://forms.gle/6pQfNEgAAsmsNNdg8';
         
         // Open Google Form in new tab
         window.open(googleFormUrl, '_blank', 'noopener,noreferrer');
